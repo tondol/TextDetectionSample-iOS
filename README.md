@@ -7,6 +7,6 @@ This sample app supports iPhone/iPad devices w/ iOS 11.
 
 ## Screenshot 
 
-| screenshot |
-| --- |
-| ![screenshot](./screenshot.png) |
+| English | Japanese |
+| --- | --- |
+| ![screenshot-en](./screenshot-en.png) | ![screenshot-ja](./screenshot-ja.png) |
