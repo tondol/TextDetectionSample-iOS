@@ -39,7 +39,12 @@ extension CGImagePropertyOrientation {
 // 画面上に認識矩形を描画するための custom view
 class VisualizeRectanlgesView: UIView {
     
-    var rectangles: [VNRectangleObservation] = [] {
+    var rectangles: [CGRect] = [] {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    var characterRectangles: [VNRectangleObservation] = [] {
         didSet {
             setNeedsDisplay()
         }
@@ -51,11 +56,16 @@ class VisualizeRectanlgesView: UIView {
         return CGPoint(x: point.x * size.width, y: (1.0 - point.y) * size.height)
     }
     
+    private func scaledRect(rect: CGRect, to size: CGSize) -> CGRect {
+        return CGRect(x: rect.minX * size.width, y: (1.0 - rect.maxY) * size.height, width: rect.width * size.width, height: rect.height * size.height)
+    }
+    
     override func draw(_ rect: CGRect) {
         backgroundColor = UIColor.clear
-        UIColor.red.setStroke()
         
-        for rect in rectangles {
+        UIColor.blue.setStroke()
+        
+        for rect in characterRectangles {
             let path = UIBezierPath()
             path.lineWidth = 2
             path.move(to: scaledPoint(point: rect.topLeft, to: frame.size))
@@ -64,6 +74,14 @@ class VisualizeRectanlgesView: UIView {
             path.addLine(to: scaledPoint(point: rect.bottomLeft, to: frame.size))
             path.addLine(to: scaledPoint(point: rect.topLeft, to: frame.size))
             path.close()
+            path.stroke()
+        }
+        
+        UIColor.red.setStroke()
+        
+        for rect in rectangles {
+            let path = UIBezierPath(rect: scaledRect(rect: rect, to: frame.size))
+            path.lineWidth = 2
             path.stroke()
         }
     }
@@ -181,7 +199,14 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         // orientation を必ず設定すること
         let handler = VNImageRequestHandler(ciImage: ciImage, orientation: Int32(orientation.rawValue))
         let request = VNDetectTextRectanglesRequest() { request, error in
-            let rects = request.results?.flatMap { result -> [VNRectangleObservation] in
+            let rects = request.results?.flatMap { result -> [CGRect] in
+                if let observation = result as? VNTextObservation {
+                    return [observation.boundingBox]
+                } else {
+                    return []
+                }
+            } ?? []
+            let characterRects = request.results?.flatMap { result -> [VNRectangleObservation] in
                 if let observation = result as? VNTextObservation {
                     return observation.characterBoxes ?? []
                 } else {
@@ -192,6 +217,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             // UI の変更はメインスレッドで実行
             DispatchQueue.main.async { [weak self] in
                 self?.visualizeRectanglesView.rectangles = rects
+                self?.visualizeRectanglesView.characterRectangles = characterRects
             }
         }
         request.reportCharacterBoxes = true
