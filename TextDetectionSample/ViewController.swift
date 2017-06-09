@@ -52,13 +52,13 @@ class VisualizeRectanlgesView: UIView {
     
     private func convertedPoint(point: CGPoint, to size: CGSize) -> CGPoint {
         // view 上の座標に変換する
-        // CoreFoundation -> UIKit の座標系変換のため、 Y 軸方向に反転する
+        // 座標系変換のため、 Y 軸方向に反転する
         return CGPoint(x: point.x * size.width, y: (1.0 - point.y) * size.height)
     }
     
     private func convertedRect(rect: CGRect, to size: CGSize) -> CGRect {
         // view 上の長方形に変換する
-        // CoreFoundation -> UIKit の座標系変換のため、 Y 軸方向に反転する
+        // 座標系変換のため、 Y 軸方向に反転する
         return CGRect(x: rect.minX * size.width, y: (1.0 - rect.maxY) * size.height, width: rect.width * size.width, height: rect.height * size.height)
     }
     
@@ -203,19 +203,13 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let request = VNDetectTextRectanglesRequest() { request, error in
             // テキストブロックの矩形を取得
             let rects = request.results?.flatMap { result -> [CGRect] in
-                if let observation = result as? VNTextObservation {
-                    return [observation.boundingBox]
-                } else {
-                    return []
-                }
+                guard let observation = result as? VNTextObservation else { return [] }
+                return [observation.boundingBox]
             } ?? []
             // 文字ごとの矩形を取得
             let characterRects = request.results?.flatMap { result -> [VNRectangleObservation] in
-                if let observation = result as? VNTextObservation {
-                    return observation.characterBoxes ?? []
-                } else {
-                    return []
-                }
+                guard let observation = result as? VNTextObservation else { return [] }
+                return observation.characterBoxes ?? []
             } ?? []
             
             // UI の変更はメインスレッドで実行
@@ -226,10 +220,6 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
         request.reportCharacterBoxes = true
         
-        do {
-            try handler.perform([request])
-        } catch {
-            fatalError("error occurred in vision framework")
-        }
+        try! handler.perform([request])
     }
 }
