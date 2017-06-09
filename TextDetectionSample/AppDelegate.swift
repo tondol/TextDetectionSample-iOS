@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  TextRecognitionSample
+//  TextDetectionSample
 //
 //  Created by Tomoyuki Hosaka on 2017/06/06.
 //  Copyright © 2017年 Tomoyuki Hosaka. All rights reserved.

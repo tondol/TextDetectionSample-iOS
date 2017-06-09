@@ -1,11 +1,11 @@
-# TextRecognitionSample-iOS
+# TextDetectionSample-iOS
 
-This sample project shows how to use Vision.framework to recognize text rectangles with cameras.
+This sample project shows how to use Vision.framework to detect text rectangles with cameras.
 
-Try open TextRecognitionSample.xcodeproj on Xcode 9 beta.
+Try open TextDetectionSample.xcodeproj on Xcode 9 beta.
 This sample app supports iPhone/iPad devices w/ iOS 11.
 
-## Screenshot 
+## Screenshot
 
 | English | Japanese |
 | --- | --- |

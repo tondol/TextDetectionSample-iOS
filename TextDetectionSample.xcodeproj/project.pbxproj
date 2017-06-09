@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2E50BF7D1EE7786D0013FB59 /* TextRecognitionSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextRecognitionSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E50BF7D1EE7786D0013FB59 /* TextDetectionSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextDetectionSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E50BF801EE7786D0013FB59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E50BF821EE7786D0013FB59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2E50BF851EE7786D0013FB59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -38,7 +38,7 @@
 		2E50BF741EE7786D0013FB59 = {
 			isa = PBXGroup;
 			children = (
-				2E50BF7F1EE7786D0013FB59 /* TextRecognitionSample */,
+				2E50BF7F1EE7786D0013FB59 /* TextDetectionSample */,
 				2E50BF7E1EE7786D0013FB59 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,12 +46,12 @@
 		2E50BF7E1EE7786D0013FB59 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2E50BF7D1EE7786D0013FB59 /* TextRecognitionSample.app */,
+				2E50BF7D1EE7786D0013FB59 /* TextDetectionSample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2E50BF7F1EE7786D0013FB59 /* TextRecognitionSample */ = {
+		2E50BF7F1EE7786D0013FB59 /* TextDetectionSample */ = {
 			isa = PBXGroup;
 			children = (
 				2E50BF801EE7786D0013FB59 /* AppDelegate.swift */,
@@ -61,15 +61,15 @@
 				2E50BF891EE7786D0013FB59 /* LaunchScreen.storyboard */,
 				2E50BF8C1EE7786D0013FB59 /* Info.plist */,
 			);
-			path = TextRecognitionSample;
+			path = TextDetectionSample;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2E50BF7C1EE7786D0013FB59 /* TextRecognitionSample */ = {
+		2E50BF7C1EE7786D0013FB59 /* TextDetectionSample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2E50BF8F1EE7786D0013FB59 /* Build configuration list for PBXNativeTarget "TextRecognitionSample" */;
+			buildConfigurationList = 2E50BF8F1EE7786D0013FB59 /* Build configuration list for PBXNativeTarget "TextDetectionSample" */;
 			buildPhases = (
 				2E50BF791EE7786D0013FB59 /* Sources */,
 				2E50BF7A1EE7786D0013FB59 /* Frameworks */,
@@ -79,9 +79,9 @@
 			);
 			dependencies = (
 			);
-			name = TextRecognitionSample;
+			name = TextDetectionSample;
 			productName = TextRecognitionSample;
-			productReference = 2E50BF7D1EE7786D0013FB59 /* TextRecognitionSample.app */;
+			productReference = 2E50BF7D1EE7786D0013FB59 /* TextDetectionSample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +99,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2E50BF781EE7786D0013FB59 /* Build configuration list for PBXProject "TextRecognitionSample" */;
+			buildConfigurationList = 2E50BF781EE7786D0013FB59 /* Build configuration list for PBXProject "TextDetectionSample" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -112,7 +112,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2E50BF7C1EE7786D0013FB59 /* TextRecognitionSample */,
+				2E50BF7C1EE7786D0013FB59 /* TextDetectionSample */,
 			);
 		};
 /* End PBXProject section */
@@ -270,9 +270,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2Q882M7MSC;
-				INFOPLIST_FILE = TextRecognitionSample/Info.plist;
+				INFOPLIST_FILE = TextDetectionSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tondol.TextRecognitionSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tondol.TextDetectionSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -284,9 +284,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2Q882M7MSC;
-				INFOPLIST_FILE = TextRecognitionSample/Info.plist;
+				INFOPLIST_FILE = TextDetectionSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tondol.TextRecognitionSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tondol.TextDetectionSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -296,7 +296,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2E50BF781EE7786D0013FB59 /* Build configuration list for PBXProject "TextRecognitionSample" */ = {
+		2E50BF781EE7786D0013FB59 /* Build configuration list for PBXProject "TextDetectionSample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2E50BF8D1EE7786D0013FB59 /* Debug */,
@@ -305,13 +305,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2E50BF8F1EE7786D0013FB59 /* Build configuration list for PBXNativeTarget "TextRecognitionSample" */ = {
+		2E50BF8F1EE7786D0013FB59 /* Build configuration list for PBXNativeTarget "TextDetectionSample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2E50BF901EE7786D0013FB59 /* Debug */,
 				2E50BF911EE7786D0013FB59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

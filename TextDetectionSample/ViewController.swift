@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  TextRecognitionSample
+//  TextDetectionSample
 //
 //  Created by Tomoyuki Hosaka on 2017/06/06.
 //  Copyright © 2017年 Tomoyuki Hosaka. All rights reserved.
@@ -50,13 +50,15 @@ class VisualizeRectanlgesView: UIView {
         }
     }
     
-    private func scaledPoint(point: CGPoint, to size: CGSize) -> CGPoint {
-        // 表示領域 (frame) のサイズに拡大する
-        // CoreGraphics -> UIKit の座標系変換のため、 Y 軸方向に反転する
+    private func convertedPoint(point: CGPoint, to size: CGSize) -> CGPoint {
+        // view 上の座標に変換する
+        // CoreFoundation -> UIKit の座標系変換のため、 Y 軸方向に反転する
         return CGPoint(x: point.x * size.width, y: (1.0 - point.y) * size.height)
     }
     
-    private func scaledRect(rect: CGRect, to size: CGSize) -> CGRect {
+    private func convertedRect(rect: CGRect, to size: CGSize) -> CGRect {
+        // view 上の長方形に変換する
+        // CoreFoundation -> UIKit の座標系変換のため、 Y 軸方向に反転する
         return CGRect(x: rect.minX * size.width, y: (1.0 - rect.maxY) * size.height, width: rect.width * size.width, height: rect.height * size.height)
     }
     
@@ -68,11 +70,11 @@ class VisualizeRectanlgesView: UIView {
         for rect in characterRectangles {
             let path = UIBezierPath()
             path.lineWidth = 2
-            path.move(to: scaledPoint(point: rect.topLeft, to: frame.size))
-            path.addLine(to: scaledPoint(point: rect.topRight, to: frame.size))
-            path.addLine(to: scaledPoint(point: rect.bottomRight, to: frame.size))
-            path.addLine(to: scaledPoint(point: rect.bottomLeft, to: frame.size))
-            path.addLine(to: scaledPoint(point: rect.topLeft, to: frame.size))
+            path.move(to: convertedPoint(point: rect.topLeft, to: frame.size))
+            path.addLine(to: convertedPoint(point: rect.topRight, to: frame.size))
+            path.addLine(to: convertedPoint(point: rect.bottomRight, to: frame.size))
+            path.addLine(to: convertedPoint(point: rect.bottomLeft, to: frame.size))
+            path.addLine(to: convertedPoint(point: rect.topLeft, to: frame.size))
             path.close()
             path.stroke()
         }
@@ -80,7 +82,7 @@ class VisualizeRectanlgesView: UIView {
         UIColor.red.setStroke()
         
         for rect in rectangles {
-            let path = UIBezierPath(rect: scaledRect(rect: rect, to: frame.size))
+            let path = UIBezierPath(rect: convertedRect(rect: rect, to: frame.size))
             path.lineWidth = 2
             path.stroke()
         }
@@ -199,6 +201,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         // orientation を必ず設定すること
         let handler = VNImageRequestHandler(ciImage: ciImage, orientation: Int32(orientation.rawValue))
         let request = VNDetectTextRectanglesRequest() { request, error in
+            // テキストブロックの矩形を取得
             let rects = request.results?.flatMap { result -> [CGRect] in
                 if let observation = result as? VNTextObservation {
                     return [observation.boundingBox]
@@ -206,6 +209,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     return []
                 }
             } ?? []
+            // 文字ごとの矩形を取得
             let characterRects = request.results?.flatMap { result -> [VNRectangleObservation] in
                 if let observation = result as? VNTextObservation {
                     return observation.characterBoxes ?? []
